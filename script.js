@@ -457,19 +457,57 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 11. Helper: Format Appointment WhatsApp Message
+  // 11. Helper: Format Appointment WhatsApp Message (No Broken Symbols)
   // ==========================================
-  const formatWhatsAppMessage = ({ branch, name, phone, service, date, slot }) => {
-    return (
-      `*New Clinic Appointment Request - Alkaa Skin Clinic*\n\n` +
-      `👤 *Patient Name:* ${name}\n` +
-      `📱 *Mobile:* ${phone}\n` +
-      `🏥 *Clinic Branch:* ${branch}\n` +
-      `🩺 *Treatment / Concern:* ${service}\n` +
-      `📅 *Preferred Date:* ${date}\n` +
-      `⏰ *Preferred Slot:* ${slot}\n\n` +
-      `_Requested via Alkaa Skin Clinic Online Booking Portal_`
-    );
+  const formatPatientName = (name) => {
+    if (!name) return 'Patient';
+    return name.trim().split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+  };
+
+  const formatFriendlyDate = (dateStr) => {
+    if (!dateStr) return '';
+    try {
+      const parts = dateStr.split('-');
+      if (parts.length === 3) {
+        const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+        if (!isNaN(d.getTime())) {
+          return d.toLocaleDateString('en-IN', {
+            weekday: 'short',
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+          }).replace(/,/g, '');
+        }
+      }
+    } catch (e) {}
+    return dateStr;
+  };
+
+  const generateTokenNumber = () => {
+    return 'ALK-' + Math.floor(1000 + Math.random() * 9000);
+  };
+
+  const formatWhatsAppMessage = ({ branch, name, phone, service, date, slot, token }) => {
+    const cleanName = formatPatientName(name);
+    const friendlyDate = formatFriendlyDate(date);
+    const tokenStr = token || generateTokenNumber();
+    const cleanPhone = phone ? (phone.startsWith('+91') ? phone : `+91 ${phone.replace(/^\+?91/, '').trim()}`) : '';
+
+    return [
+      '*ALKAA SKIN CLINIC*',
+      '*Priority OPD Appointment Request*',
+      '━━━━━━━━━━━━━━━━━━━━━',
+      `• *Patient Name:* ${cleanName}`,
+      `• *Contact Mobile:* ${cleanPhone || phone}`,
+      `• *Clinic Branch:* ${branch}`,
+      `• *Treatment / Concern:* ${service}`,
+      `• *Preferred Date:* ${friendlyDate}`,
+      `• *Preferred Slot:* ${slot}`,
+      `• *Token Reference:* ${tokenStr}`,
+      '━━━━━━━━━━━━━━━━━━━━━',
+      '*Doctor:* Dr. Apurva Vilas Shindikar (MBBS, DDV Mumbai)',
+      '_Requested via Alkaa Skin Clinic Online Booking Portal_'
+    ].join('\n');
   };
 
   const validateIndianPhone = (phone) => {
@@ -525,6 +563,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const showApprovalModal = (data) => {
     if (!bookingApprovalModal) return;
 
+    if (!data.token) {
+      data.token = generateTokenNumber();
+    }
+
+    const tokenEl = document.getElementById('appTokenId');
     const nameEl = document.getElementById('appPatientName');
     const phoneEl = document.getElementById('appPatientPhone');
     const branchEl = document.getElementById('appClinicBranch');
@@ -532,11 +575,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const dtEl = document.getElementById('appDateTime');
     const waBtn = document.getElementById('appWhatsAppBtn');
 
-    if (nameEl) nameEl.textContent = data.name || 'Patient';
+    if (tokenEl) tokenEl.textContent = data.token;
+    if (nameEl) nameEl.textContent = formatPatientName(data.name);
     if (phoneEl) phoneEl.textContent = data.phone || 'Provided on Call';
     if (branchEl) branchEl.textContent = data.branch;
     if (treatEl) treatEl.textContent = data.service;
-    if (dtEl) dtEl.textContent = `${data.date} • ${data.slot}`;
+    if (dtEl) dtEl.textContent = `${formatFriendlyDate(data.date)} • ${data.slot}`;
 
     const msg = formatWhatsAppMessage(data);
     const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
@@ -589,6 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      data.token = generateTokenNumber();
       showToast('Opening WhatsApp', 'Connecting you directly with Dr. Apurva\'s clinic line...', 'success');
       const msg = formatWhatsAppMessage(data);
       const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
@@ -609,15 +654,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      data.token = generateTokenNumber();
+      const cleanName = formatPatientName(data.name);
+      const friendlyDate = formatFriendlyDate(data.date);
+
       // Hide form and display confirmation card
       appointmentForm.style.display = 'none';
       if (bookingSuccessBox) {
         bookingSuccessBox.style.display = 'block';
         if (successDetailsText) {
           successDetailsText.innerHTML = `
-            <strong>Thank you, ${data.name}!</strong><br>
-            Your appointment request for <strong>${data.service}</strong> at our <strong>${data.branch}</strong> on <strong>${data.date} (${data.slot})</strong> has been received.<br>
-            Dr. Apurva's clinic coordinator will call <strong>${data.phone}</strong> shortly to confirm your consultation token.
+            <strong>Thank you, ${cleanName}!</strong><br>
+            Your appointment request for <strong>${data.service}</strong> at our <strong>${data.branch}</strong> on <strong>${friendlyDate} (${data.slot})</strong> has been received.<br>
+            Priority Token: <strong>${data.token}</strong>. Dr. Apurva's clinic coordinator will call <strong>${data.phone}</strong> shortly to confirm your consultation.
           `;
         }
         if (openWhatsAppConfirm) {
@@ -628,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Trigger high-aesthetic approval modal
       showApprovalModal(data);
-      showToast('Consultation Token Reserved', `Priority token allocated for ${data.name}`, 'success');
+      showToast('Consultation Token Reserved', `Priority token ${data.token} allocated for ${cleanName}`, 'success');
     });
   }
 
@@ -673,6 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      data.token = generateTokenNumber();
       const msg = formatWhatsAppMessage(data);
       const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
       window.open(waUrl, '_blank');
@@ -694,11 +744,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      data.token = generateTokenNumber();
       bookingModal.classList.remove('active');
       document.body.style.overflow = '';
 
       showApprovalModal(data);
-      showToast('Consultation Token Reserved', `Priority token allocated for ${data.name}`, 'success');
+      showToast('Consultation Token Reserved', `Priority token ${data.token} allocated for ${formatPatientName(data.name)}`, 'success');
       modalBookingForm.reset();
     });
   }
