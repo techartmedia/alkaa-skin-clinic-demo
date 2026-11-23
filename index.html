@@ -805,11 +805,8 @@
             </div>
 
             <div class="form-submit-row">
-              <button type="button" class="btn btn-wa-submit btn-block" id="submitWhatsAppBooking">
-                <i class="fab fa-whatsapp"></i> Book Instantly via WhatsApp
-              </button>
-              <button type="submit" class="btn btn-primary btn-block" id="submitWebBooking">
-                <i class="fas fa-check-circle"></i> Confirm Online Booking
+              <button type="submit" class="btn btn-wa-submit btn-block btn-lg" id="submitWhatsAppBooking">
+                <i class="fab fa-whatsapp"></i> Book Appointment on WhatsApp
               </button>
             </div>
 
@@ -1129,17 +1126,45 @@
       </div>
     </div>
 
-    <!-- Pitch Attribution Strip -->
+    <!-- ==================== POWERED BY TECHARTMEDIA SHOWCASE BANNER ==================== -->
+    <div class="techart-showcase-strip">
+      <div class="container">
+        <div class="techart-card">
+          <div class="techart-brand-side">
+            <div class="techart-logo-wrap">
+              <img src="assets/techartmedia_logo.png" alt="TechArtMedia Agency Logo" class="techart-agency-logo">
+            </div>
+            <div class="techart-info-text">
+              <div class="techart-powered-pill">
+                <i class="fas fa-bolt text-teal"></i> POWERED BY <em>TechArtMedia</em>
+              </div>
+              <h4 class="techart-card-heading">
+                High-Ticket Healthcare Digital Systems & Patient Acquisition
+              </h4>
+              <p class="techart-card-sub">
+                Custom engineered exclusively for Dr. Apurva Vilas Shindikar • Alkaa Skin, Hair & Laser Clinic (Nashik)
+              </p>
+            </div>
+          </div>
+          <div class="techart-action-side">
+            <a href="https://techartmedia.in" target="_blank" class="btn btn-techart-visit">
+              <span>Visit TechArtMedia</span> <i class="fas fa-external-link-alt"></i>
+            </a>
+            <div class="techart-meta-tag">
+              <span>Nashik, Maharashtra</span> • <span>Lead: Durvesh Bhavsar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Copyright Strip -->
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
-        <p class="copyright">&copy; 2026 Alkaa Skin Hair Laser Clinic. All rights reserved.</p>
-        <div class="agency-attribution">
-          <span>🚀 Strategic Patient Acquisition Prototype Engineered by</span>
-          <a href="https://techartmedia.in" target="_blank" class="techart-link">
-            <img src="assets/techartmedia_logo.png" alt="TechArtMedia Logo" style="height: 18px; vertical-align: middle; margin-right: 6px;">
-            <em style="font-style: italic; font-weight: 800; color: #38bdf8;">TechArtMedia</em> (Durvesh Bhavsar • Nashik)
-          </a>
-        </div>
+        <p class="copyright">&copy; 2026 Alkaa Skin, Hair & Laser Clinic. Supervised by Dr. Apurva Vilas Shindikar (MBBS, DDVL). All Rights Reserved.</p>
+        <p class="footer-badge-note">
+          <i class="fas fa-shield-alt text-teal"></i> 100% HIPAA-Compliant Architecture • Digital Prototype by <em style="font-style: italic; font-weight: 800; color: #38bdf8; margin-left: 4px;">TechArtMedia</em>
+        </p>
       </div>
     </div>
   </footer>
@@ -1309,91 +1334,11 @@
           </div>
 
           <div class="form-submit-row mt-15">
-            <button type="button" class="btn btn-wa-submit btn-block" id="modalSubmitWhatsApp">
-              <i class="fab fa-whatsapp"></i> Book Instantly via WhatsApp
-            </button>
-            <button type="submit" class="btn btn-primary btn-block">
-              <i class="fas fa-check-circle"></i> Confirm Consultation
+            <button type="submit" class="btn btn-wa-submit btn-block btn-lg" id="modalSubmitWhatsApp">
+              <i class="fab fa-whatsapp"></i> Book Appointment on WhatsApp
             </button>
           </div>
         </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== APPOINTMENT APPROVAL CONFIRMATION MODAL ==================== -->
-  <div class="modal-backdrop" id="bookingApprovalModal" role="dialog" aria-modal="true" aria-labelledby="approvalTitle">
-    <div class="modal-dialog max-w-500 approval-modal-dialog">
-      <div class="approval-header">
-        <button class="approval-close-btn" id="topCloseApprovalModal" aria-label="Close modal">&times;</button>
-        <div class="approval-seal-wrap">
-          <div class="approval-seal-pulse"></div>
-          <div class="approval-seal">
-            <i class="fas fa-check"></i>
-          </div>
-        </div>
-        <span class="badge-opd" style="background: rgba(255,255,255,0.22); color: #ffffff; border-color: rgba(255,255,255,0.35);">
-          <i class="fas fa-check-circle"></i> APPOINTMENT CONFIRMED
-        </span>
-        <h3 id="approvalTitle">Consultation Booked Successfully</h3>
-        <p>Scheduled with Dr. Apurva Vilas Shindikar (MBBS, DDV Mumbai)</p>
-      </div>
-
-      <div class="approval-body">
-        <!-- Doctor Real-Time Notification Status -->
-        <div class="doctor-dispatch-card">
-          <div class="dispatch-header">
-            <div class="doc-avatar-wrap">
-              <i class="fas fa-user-md"></i>
-              <span class="pulse-dot"></span>
-            </div>
-            <div class="doc-alert-info">
-              <strong class="dispatch-title">Doctor Consultation Desk Notified</strong>
-              <span class="dispatch-target">Dr. Apurva Vilas Shindikar • +91 84590 68967</span>
-            </div>
-            <span class="dispatch-status-badge"><i class="fas fa-satellite-dish"></i> Dispatched</span>
-          </div>
-          <div class="dispatch-details">
-            <p>Your appointment request has been forwarded directly to Dr. Apurva's clinic coordinator desk at Indira Nagar.</p>
-          </div>
-        </div>
-
-        <!-- Patient & Appointment Intake Details -->
-        <div class="token-summary-card">
-          <div class="token-row">
-            <span class="t-lbl"><i class="fas fa-user text-teal"></i> Patient Name:</span>
-            <strong class="t-val" id="appPatientName">Patient Name</strong>
-          </div>
-          <div class="token-row">
-            <span class="t-lbl"><i class="fas fa-phone-alt text-teal"></i> Contact Mobile:</span>
-            <strong class="t-val" id="appPatientPhone">+91 XXXXX XXXXX</strong>
-          </div>
-          <div class="token-row">
-            <span class="t-lbl"><i class="fas fa-hospital-alt text-teal"></i> Clinic Branch:</span>
-            <strong class="t-val" id="appClinicBranch">Indira Nagar (Main Center)</strong>
-          </div>
-          <div class="token-row">
-            <span class="t-lbl"><i class="fas fa-stethoscope text-teal"></i> Treatment:</span>
-            <strong class="t-val" id="appTreatmentName">Consultation</strong>
-          </div>
-          <div class="token-row">
-            <span class="t-lbl"><i class="fas fa-calendar-day text-teal"></i> Date & Slot:</span>
-            <strong class="t-val" id="appDateTime">Tomorrow (Morning)</strong>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="approval-actions">
-          <a href="#" id="appWhatsAppBtn" target="_blank" class="btn btn-wa-submit btn-block">
-            <i class="fab fa-whatsapp"></i> Confirm with Dr. Apurva on WhatsApp
-          </a>
-          <a href="tel:+918459068967" class="btn btn-outline-teal btn-block">
-            <i class="fas fa-phone-alt"></i> Call Clinic Reception Desk (+91 84590 68967)
-          </a>
-          <button type="button" class="btn btn-outline btn-block" id="closeApprovalModalBtn">
-            <i class="fas fa-times"></i> Close Window & Return to Website
-          </button>
-        </div>
       </div>
     </div>
   </div>

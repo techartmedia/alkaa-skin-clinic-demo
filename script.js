@@ -291,9 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Global Backdrop Click & Escape Key Handlers
-  const bookingApprovalModal = document.getElementById('bookingApprovalModal');
-  const closeApprovalModalBtn = document.getElementById('closeApprovalModalBtn');
-
   window.addEventListener('click', (e) => {
     if (e.target === auditModal) {
       auditModal.classList.remove('active');
@@ -307,15 +304,11 @@ document.addEventListener('DOMContentLoaded', () => {
       procedureModal.classList.remove('active');
       document.body.style.overflow = '';
     }
-    if (e.target === bookingApprovalModal) {
-      bookingApprovalModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      [auditModal, bookingModal, procedureModal, bookingApprovalModal].forEach(m => {
+      [auditModal, bookingModal, procedureModal].forEach(m => {
         if (m && m.classList.contains('active')) {
           m.classList.remove('active');
           document.body.style.overflow = '';
@@ -552,73 +545,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ==========================================
-  // APPOINTMENT APPROVAL MODAL CONTROLLER
-  // ==========================================
-  const showApprovalModal = (data) => {
-    if (!bookingApprovalModal) return;
-
-    const nameEl = document.getElementById('appPatientName');
-    const phoneEl = document.getElementById('appPatientPhone');
-    const branchEl = document.getElementById('appClinicBranch');
-    const treatEl = document.getElementById('appTreatmentName');
-    const dtEl = document.getElementById('appDateTime');
-    const waBtn = document.getElementById('appWhatsAppBtn');
-
-    if (nameEl) nameEl.textContent = formatPatientName(data.name);
-    if (phoneEl) phoneEl.textContent = data.phone || 'Provided on Call';
-    if (branchEl) branchEl.textContent = data.branch;
-    if (treatEl) treatEl.textContent = data.service;
-    if (dtEl) dtEl.textContent = `${formatFriendlyDate(data.date)} • ${data.slot}`;
-
-    const msg = formatWhatsAppMessage(data);
-    const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
-    if (waBtn) waBtn.href = waUrl;
-
-    bookingApprovalModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    // Doctor Notification System
-    console.log(`[DOCTOR OPD DISPATCH] Appointment Request: Patient: ${data.name} | Phone: ${data.phone} | Branch: ${data.branch} | Service: ${data.service} | Target: Dr. Apurva Vilas Shindikar (+91 84590 68967)`);
-    showToast('Doctor Desk Notified', `Appointment details routed to Dr. Apurva Vilas Shindikar (+91 84590 68967).`, 'success');
-  };
-
-  const closeApprovalModal = () => {
-    if (bookingApprovalModal) {
-      bookingApprovalModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  };
-
-  const topCloseApprovalModal = document.getElementById('topCloseApprovalModal');
-  if (topCloseApprovalModal) {
-    topCloseApprovalModal.addEventListener('click', closeApprovalModal);
-  }
-
-  if (closeApprovalModalBtn) {
-    closeApprovalModalBtn.addEventListener('click', closeApprovalModal);
-  }
-
-  // Backdrop click to close modal
-  if (bookingApprovalModal) {
-    bookingApprovalModal.addEventListener('click', (e) => {
-      if (e.target === bookingApprovalModal) {
-        closeApprovalModal();
-      }
-    });
-  }
-
-  // Escape key to close modal
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && bookingApprovalModal && bookingApprovalModal.classList.contains('active')) {
-      closeApprovalModal();
-    }
-  });
-
-  // ==========================================
   // 12. Main On-Page Appointment Booking Form
   // ==========================================
   const appointmentForm = document.getElementById('appointmentForm');
-  const submitWhatsAppBooking = document.getElementById('submitWhatsAppBooking');
   const bookingSuccessBox = document.getElementById('bookingSuccessBox');
   const successDetailsText = document.getElementById('successDetailsText');
   const openWhatsAppConfirm = document.getElementById('openWhatsAppConfirm');
@@ -626,7 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const getPageFormData = () => {
     return {
-      branch: document.getElementById('clinicBranch')?.value || 'Indira Nagar (Main Center)',
+      branch: document.getElementById('clinicBranch')?.value || 'Indira Nagar Clinic (Wadala-Pathardi Rd)',
       name: document.getElementById('patientName')?.value?.trim() || '',
       phone: document.getElementById('patientPhone')?.value?.trim() || '',
       service: document.getElementById('serviceNeeded')?.value || 'Consultation / Diagnosis',
@@ -635,34 +564,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   };
 
-  // Direct WhatsApp Submit
-  if (submitWhatsAppBooking) {
-    submitWhatsAppBooking.addEventListener('click', () => {
+  if (appointmentForm) {
+    appointmentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
       const data = getPageFormData();
+
       if (!data.name) {
         showToast('Name Required', 'Please enter your full name to proceed with booking.', 'warning');
         document.getElementById('patientName')?.focus();
         return;
       }
-      if (!data.phone || !validateIndianPhone(data.phone)) {
-        showToast('Valid Phone Required', 'Please enter a valid 10-digit mobile number.', 'warning');
-        document.getElementById('patientPhone')?.focus();
-        return;
-      }
-
-      showToast('Opening WhatsApp', 'Connecting you directly with Dr. Apurva\'s clinic line...', 'success');
-      const msg = formatWhatsAppMessage(data);
-      const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
-      window.open(waUrl, '_blank');
-      showApprovalModal(data);
-    });
-  }
-
-  // Web Submit (Opens Approval Modal + Success Card)
-  if (appointmentForm) {
-    appointmentForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = getPageFormData();
 
       if (!data.phone || !validateIndianPhone(data.phone)) {
         showToast('Valid Phone Required', 'Please enter a valid 10-digit mobile number.', 'warning');
@@ -672,6 +583,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const cleanName = formatPatientName(data.name);
       const friendlyDate = formatFriendlyDate(data.date);
+      const msg = formatWhatsAppMessage(data);
+      const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
+
+      // Open WhatsApp directly
+      window.open(waUrl, '_blank');
 
       // Hide form and display confirmation card
       appointmentForm.style.display = 'none';
@@ -680,18 +596,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (successDetailsText) {
           successDetailsText.innerHTML = `
             <strong>Thank you, ${cleanName}!</strong><br>
-            Your appointment request for <strong>${data.service}</strong> at our <strong>${data.branch}</strong> on <strong>${friendlyDate} (${data.slot})</strong> has been received.<br>
-            Dr. Apurva's clinic coordinator will call <strong>${data.phone}</strong> shortly to confirm your consultation slot.
+            Your appointment request for <strong>${data.service}</strong> at our <strong>${data.branch}</strong> on <strong>${friendlyDate} (${data.slot})</strong> is opening in WhatsApp.<br>
+            Dr. Apurva's clinic coordinator will verify your consultation slot promptly.
           `;
         }
         if (openWhatsAppConfirm) {
-          const msg = formatWhatsAppMessage(data);
-          openWhatsAppConfirm.href = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
+          openWhatsAppConfirm.href = waUrl;
         }
       }
 
-      // Trigger high-aesthetic approval modal
-      showApprovalModal(data);
+      showToast('Opening WhatsApp', 'Connecting directly with Dr. Apurva\'s clinic desk (+91 84590 68967)...', 'success');
     });
   }
 
@@ -709,11 +623,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 13. Modal Appointment Booking Form
   // ==========================================
   const modalBookingForm = document.getElementById('modalBookingForm');
-  const modalSubmitWhatsApp = document.getElementById('modalSubmitWhatsApp');
 
   const getModalFormData = () => {
     return {
-      branch: document.getElementById('mBranch')?.value || 'Indira Nagar (Main Center)',
+      branch: document.getElementById('mBranch')?.value || 'Indira Nagar Clinic (Main)',
       name: document.getElementById('mName')?.value?.trim() || '',
       phone: document.getElementById('mPhone')?.value?.trim() || '',
       service: document.getElementById('mService')?.value || 'Consultation / Diagnosis',
@@ -722,14 +635,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   };
 
-  if (modalSubmitWhatsApp) {
-    modalSubmitWhatsApp.addEventListener('click', () => {
+  if (modalBookingForm) {
+    modalBookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
       const data = getModalFormData();
+
       if (!data.name) {
         showToast('Name Required', 'Please enter patient name.', 'warning');
         document.getElementById('mName')?.focus();
         return;
       }
+
       if (!data.phone || !validateIndianPhone(data.phone)) {
         showToast('Valid Phone Required', 'Please enter a valid 10-digit mobile number.', 'warning');
         document.getElementById('mPhone')?.focus();
@@ -738,30 +654,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const msg = formatWhatsAppMessage(data);
       const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
+
+      // Open WhatsApp directly
       window.open(waUrl, '_blank');
+
+      // Close modal
       bookingModal.classList.remove('active');
       document.body.style.overflow = '';
-      showApprovalModal(data);
-      showToast('Opening WhatsApp', 'Redirecting to Dr. Apurva\'s clinic line...', 'success');
-    });
-  }
-
-  if (modalBookingForm) {
-    modalBookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = getModalFormData();
-
-      if (!data.phone || !validateIndianPhone(data.phone)) {
-        showToast('Valid Phone Required', 'Please enter a valid 10-digit mobile number.', 'warning');
-        document.getElementById('mPhone')?.focus();
-        return;
-      }
-
-      bookingModal.classList.remove('active');
-      document.body.style.overflow = '';
-
-      showApprovalModal(data);
       modalBookingForm.reset();
+
+      showToast('Opening WhatsApp', 'Connecting directly with Dr. Apurva\'s clinic desk (+91 84590 68967)...', 'success');
     });
   }
 });
