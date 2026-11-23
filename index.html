@@ -1322,35 +1322,66 @@
   </div>
 
   <!-- ==================== APPOINTMENT APPROVAL CONFIRMATION MODAL ==================== -->
-  <div class="modal-backdrop" id="bookingApprovalModal">
+  <div class="modal-backdrop" id="bookingApprovalModal" role="dialog" aria-modal="true" aria-labelledby="approvalTitle">
     <div class="modal-dialog max-w-500 approval-modal-dialog">
       <div class="approval-header">
+        <button class="approval-close-btn" id="topCloseApprovalModal" aria-label="Close modal">&times;</button>
         <div class="approval-seal-wrap">
           <div class="approval-seal-pulse"></div>
           <div class="approval-seal">
             <i class="fas fa-check"></i>
           </div>
         </div>
-        <span class="badge-opd" style="background: rgba(255,255,255,0.25); color: #ffffff; border-color: rgba(255,255,255,0.4);">OPD PRIORITY PASS</span>
-        <h3>Consultation Token Approved</h3>
-        <p>Your appointment request has been scheduled with Dr. Apurva Vilas Shindikar</p>
+        <span class="badge-opd" style="background: rgba(255,255,255,0.22); color: #ffffff; border-color: rgba(255,255,255,0.35);">
+          <i class="fas fa-shield-alt"></i> VERIFIED CLINICAL OPD PASS
+        </span>
+        <h3 id="approvalTitle">Consultation Token Approved</h3>
+        <p>Allocated in Dr. Apurva Vilas Shindikar's OPD Schedule</p>
       </div>
+
       <div class="approval-body">
-        <div class="token-summary-card">
-          <div class="token-row" style="background: rgba(13, 148, 136, 0.08); padding: 8px 12px; border-radius: 8px; margin-bottom: 8px;">
-            <span class="t-lbl" style="color: var(--primary); font-weight: 700;"><i class="fas fa-ticket-alt text-teal"></i> Token ID:</span>
-            <strong class="t-val" id="appTokenId" style="color: var(--primary); font-size: 1.05rem; letter-spacing: 0.5px;">ALK-0000</strong>
+        <!-- Sequential Token Hero Box -->
+        <div class="token-hero-banner">
+          <div class="token-hero-top">
+            <span class="token-hero-label"><i class="fas fa-ticket-alt"></i> PRIORITY OPD TOKEN</span>
+            <span class="token-hero-seq-tag" id="appTokenSeqTag">Sequence #101 Today</span>
           </div>
+          <div class="token-hero-code" id="appTokenId">ALK-OPD-101</div>
+          <div class="token-hero-sub">
+            <i class="fas fa-check-circle text-teal"></i> Queue Reserved for In-Person Evaluation
+          </div>
+        </div>
+
+        <!-- Doctor Real-Time Notification Status -->
+        <div class="doctor-dispatch-card">
+          <div class="dispatch-header">
+            <div class="doc-avatar-wrap">
+              <i class="fas fa-user-md"></i>
+              <span class="pulse-dot"></span>
+            </div>
+            <div class="doc-alert-info">
+              <strong class="dispatch-title">Doctor OPD Terminal Alerted</strong>
+              <span class="dispatch-target">Dr. Apurva Vilas Shindikar • +91 84590 68967</span>
+            </div>
+            <span class="dispatch-status-badge"><i class="fas fa-satellite-dish"></i> Dispatched</span>
+          </div>
+          <div class="dispatch-details">
+            <p>Your appointment intake and priority token have been transmitted to Dr. Apurva's clinic coordinator desk at Indira Nagar.</p>
+          </div>
+        </div>
+
+        <!-- Patient & Appointment Intake Details -->
+        <div class="token-summary-card">
           <div class="token-row">
-            <span class="t-lbl"><i class="fas fa-user text-teal"></i> Patient:</span>
+            <span class="t-lbl"><i class="fas fa-user text-teal"></i> Patient Name:</span>
             <strong class="t-val" id="appPatientName">Patient Name</strong>
           </div>
           <div class="token-row">
-            <span class="t-lbl"><i class="fas fa-phone-alt text-teal"></i> Mobile:</span>
+            <span class="t-lbl"><i class="fas fa-phone-alt text-teal"></i> Contact Mobile:</span>
             <strong class="t-val" id="appPatientPhone">+91 XXXXX XXXXX</strong>
           </div>
           <div class="token-row">
-            <span class="t-lbl"><i class="fas fa-hospital-alt text-teal"></i> Branch:</span>
+            <span class="t-lbl"><i class="fas fa-hospital-alt text-teal"></i> Clinic Branch:</span>
             <strong class="t-val" id="appClinicBranch">Indira Nagar (Main Center)</strong>
           </div>
           <div class="token-row">
@@ -1363,17 +1394,16 @@
           </div>
         </div>
 
-        <div class="approval-status-note">
-          <i class="fas fa-shield-alt text-gold" style="font-size: 1.1rem; flex-shrink: 0; margin-top: 2px;"></i>
-          <span><strong>Priority OPD Token Allocated:</strong> Dr. Apurva's clinic coordinator will verify your token via WhatsApp/Call within 30 minutes.</span>
-        </div>
-
+        <!-- Action Buttons -->
         <div class="approval-actions">
           <a href="#" id="appWhatsAppBtn" target="_blank" class="btn btn-wa-submit btn-block">
-            <i class="fab fa-whatsapp"></i> Confirm Instantly via WhatsApp
+            <i class="fab fa-whatsapp"></i> Confirm with Dr. Apurva on WhatsApp
+          </a>
+          <a href="tel:+918459068967" class="btn btn-outline-teal btn-block">
+            <i class="fas fa-phone-alt"></i> Call Clinic Reception Desk (+91 84590 68967)
           </a>
           <button type="button" class="btn btn-outline btn-block" id="closeApprovalModalBtn">
-            Done / Return to Website
+            <i class="fas fa-times"></i> Close Window & Return to Website
           </button>
         </div>
       </div>

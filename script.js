@@ -483,14 +483,37 @@ document.addEventListener('DOMContentLoaded', () => {
     return dateStr;
   };
 
-  const generateTokenNumber = () => {
-    return 'ALK-' + Math.floor(1000 + Math.random() * 9000);
+  const getNextSequentialToken = () => {
+    try {
+      const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+      const lastDate = localStorage.getItem('alkaa_token_date');
+      let currentSeq = parseInt(localStorage.getItem('alkaa_token_seq') || '100', 10);
+
+      if (lastDate !== today || isNaN(currentSeq) || currentSeq < 100) {
+        currentSeq = 101;
+        localStorage.setItem('alkaa_token_date', today);
+      } else {
+        currentSeq += 1;
+      }
+
+      localStorage.setItem('alkaa_token_seq', currentSeq.toString());
+      return {
+        code: `ALK-OPD-${currentSeq}`,
+        seqNumber: currentSeq
+      };
+    } catch (e) {
+      const rand = Math.floor(101 + Math.random() * 50);
+      return {
+        code: `ALK-OPD-${rand}`,
+        seqNumber: rand
+      };
+    }
   };
 
   const formatWhatsAppMessage = ({ branch, name, phone, service, date, slot, token }) => {
     const cleanName = formatPatientName(name);
     const friendlyDate = formatFriendlyDate(date);
-    const tokenStr = token || generateTokenNumber();
+    const tokenStr = token || getNextSequentialToken().code;
     const cleanPhone = phone ? (phone.startsWith('+91') ? phone : `+91 ${phone.replace(/^\+?91/, '').trim()}`) : '';
 
     return [
@@ -564,10 +587,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!bookingApprovalModal) return;
 
     if (!data.token) {
-      data.token = generateTokenNumber();
+      const tokenObj = getNextSequentialToken();
+      data.token = tokenObj.code;
+      data.seqNumber = tokenObj.seqNumber;
     }
 
     const tokenEl = document.getElementById('appTokenId');
+    const seqTagEl = document.getElementById('appTokenSeqTag');
     const nameEl = document.getElementById('appPatientName');
     const phoneEl = document.getElementById('appPatientPhone');
     const branchEl = document.getElementById('appClinicBranch');
@@ -576,6 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const waBtn = document.getElementById('appWhatsAppBtn');
 
     if (tokenEl) tokenEl.textContent = data.token;
+    if (seqTagEl) seqTagEl.textContent = `Sequence #${data.seqNumber || '101'} Today`;
     if (nameEl) nameEl.textContent = formatPatientName(data.name);
     if (phoneEl) phoneEl.textContent = data.phone || 'Provided on Call';
     if (branchEl) branchEl.textContent = data.branch;
@@ -588,14 +615,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     bookingApprovalModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Doctor Notification System
+    console.log(`[DOCTOR OPD DISPATCH] Token: ${data.token} (Sequence: #${data.seqNumber}) | Patient: ${data.name} | Phone: ${data.phone} | Branch: ${data.branch} | Service: ${data.service} | Target: Dr. Apurva Vilas Shindikar (+91 84590 68967)`);
+    showToast('Doctor OPD Desk Alerted', `Token ${data.token} & intake routed to Dr. Apurva Vilas Shindikar (+91 84590 68967).`, 'success');
   };
 
-  if (closeApprovalModalBtn && bookingApprovalModal) {
-    closeApprovalModalBtn.addEventListener('click', () => {
+  const closeApprovalModal = () => {
+    if (bookingApprovalModal) {
       bookingApprovalModal.classList.remove('active');
       document.body.style.overflow = '';
+    }
+  };
+
+  const topCloseApprovalModal = document.getElementById('topCloseApprovalModal');
+  if (topCloseApprovalModal) {
+    topCloseApprovalModal.addEventListener('click', closeApprovalModal);
+  }
+
+  if (closeApprovalModalBtn) {
+    closeApprovalModalBtn.addEventListener('click', closeApprovalModal);
+  }
+
+  // Backdrop click to close modal
+  if (bookingApprovalModal) {
+    bookingApprovalModal.addEventListener('click', (e) => {
+      if (e.target === bookingApprovalModal) {
+        closeApprovalModal();
+      }
     });
   }
+
+  // Escape key to close modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && bookingApprovalModal && bookingApprovalModal.classList.contains('active')) {
+      closeApprovalModal();
+    }
+  });
 
   // ==========================================
   // 12. Main On-Page Appointment Booking Form
@@ -633,7 +689,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      data.token = generateTokenNumber();
+      const tokenObj = getNextSequentialToken();
+      data.token = tokenObj.code;
+      data.seqNumber = tokenObj.seqNumber;
+
       showToast('Opening WhatsApp', 'Connecting you directly with Dr. Apurva\'s clinic line...', 'success');
       const msg = formatWhatsAppMessage(data);
       const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
@@ -654,7 +713,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      data.token = generateTokenNumber();
+      const tokenObj = getNextSequentialToken();
+      data.token = tokenObj.code;
+      data.seqNumber = tokenObj.seqNumber;
+
       const cleanName = formatPatientName(data.name);
       const friendlyDate = formatFriendlyDate(data.date);
 
@@ -666,7 +728,7 @@ document.addEventListener('DOMContentLoaded', () => {
           successDetailsText.innerHTML = `
             <strong>Thank you, ${cleanName}!</strong><br>
             Your appointment request for <strong>${data.service}</strong> at our <strong>${data.branch}</strong> on <strong>${friendlyDate} (${data.slot})</strong> has been received.<br>
-            Priority Token: <strong>${data.token}</strong>. Dr. Apurva's clinic coordinator will call <strong>${data.phone}</strong> shortly to confirm your consultation.
+            Priority Token: <strong>${data.token}</strong> (Sequence #${data.seqNumber} Today). Dr. Apurva's clinic coordinator will call <strong>${data.phone}</strong> shortly to confirm your consultation.
           `;
         }
         if (openWhatsAppConfirm) {
@@ -677,7 +739,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Trigger high-aesthetic approval modal
       showApprovalModal(data);
-      showToast('Consultation Token Reserved', `Priority token ${data.token} allocated for ${cleanName}`, 'success');
     });
   }
 
@@ -722,7 +783,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      data.token = generateTokenNumber();
+      const tokenObj = getNextSequentialToken();
+      data.token = tokenObj.code;
+      data.seqNumber = tokenObj.seqNumber;
+
       const msg = formatWhatsAppMessage(data);
       const waUrl = `https://wa.me/918459068967?text=${encodeURIComponent(msg)}`;
       window.open(waUrl, '_blank');
@@ -744,12 +808,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      data.token = generateTokenNumber();
+      const tokenObj = getNextSequentialToken();
+      data.token = tokenObj.code;
+      data.seqNumber = tokenObj.seqNumber;
+
       bookingModal.classList.remove('active');
       document.body.style.overflow = '';
 
       showApprovalModal(data);
-      showToast('Consultation Token Reserved', `Priority token ${data.token} allocated for ${formatPatientName(data.name)}`, 'success');
       modalBookingForm.reset();
     });
   }
