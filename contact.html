@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinic Locations, Timings & Booking | Alkaa Skin Clinic Nashik</title>
+  <meta name="description" content="Find Alkaa Skin Clinic locations in Indira Nagar (Wadala-Pathardi Rd) & Deolali Camp, Nashik. View OPD timings and book an appointment with Dr. Apurva Shindikar.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==================== PITCH DEMO BANNER (FOR DR. APURVA) ==================== -->
+  <aside class="pitch-banner" id="pitchBanner" aria-label="Agency Prototype Notice">
+    <div class="pitch-container">
+      <div class="pitch-content">
+        <img src="assets/techartmedia_logo.png" alt="TechArtMedia Logo" style="height: 22px; width: auto; object-fit: contain; margin-right: 8px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); vertical-align: middle;">
+        <span class="pitch-badge"><i class="fas fa-sparkles"></i> STRATEGIC PROTOTYPE</span>
+        <span class="pitch-text">Prepared exclusively for <strong>Dr. Apurva Vilas Shindikar</strong> by <em style="font-style: italic; font-weight: 800; color: #38bdf8;">TechArtMedia</em> (Nashik) • High-Ticket Patient Acquisition System</span>
+      </div>
+      <div class="pitch-actions">
+        <button class="btn-audit-toggle" id="openAuditModalBtn" aria-label="Open Audit Comparison">
+          <i class="fas fa-chart-line"></i> View Audit: Old vs. New
+        </button>
+        <button class="btn-close-banner" id="closeBannerBtn" title="Dismiss Banner" aria-label="Close banner">&times;</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== TOP CONTACT STRIP ==================== -->
+  <header class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span><i class="fas fa-map-marker-alt text-teal"></i> Indira Nagar & Deolali Camp, Nashik</span>
+        <span class="divider">•</span>
+        <span><i class="fas fa-shield-alt text-teal"></i> US-FDA Approved Laser Technology</span>
+        <span class="divider">•</span>
+        <span><i class="fab fa-google text-gold"></i> 4.8★ Google Verified</span>
+        <span class="divider">•</span>
+        <span><i class="fas fa-venus text-gold"></i> Women-Led Practice</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:+918459068967" class="top-link"><i class="fas fa-phone-alt"></i> +91 84590 68967</a>
+        <a href="https://wa.me/918459068967?text=Hello%20Dr.%20Apurva,%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" class="top-link wa-link"><i class="fab fa-whatsapp"></i> WhatsApp OPD</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN NAVIGATION ==================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-emblem">
+          <i class="fas fa-spa"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">ALKAA SKIN CLINIC</span>
+          <span class="brand-subtitle">Hair • Laser • Aesthetic Dermatology</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="treatments.html" class="nav-link">Treatments</a></li>
+        <li><a href="about.html" class="nav-link">Dr. Apurva</a></li>
+        <li><a href="clinic-tour.html" class="nav-link">Clinic & Tech</a></li>
+        <li><a href="results.html" class="nav-link">Results & Reviews</a></li>
+        <li><a href="contact.html" class="nav-link active">Locations & Booking</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <button class="btn btn-primary open-booking-btn">
+          <i class="far fa-calendar-check"></i> Book Consultation
+        </button>
+        <button class="mobile-hamburger" id="mobileToggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== IMPROVED PAGE TITLE LAYOUT ==================== -->
+  <header class="inner-page-header">
+    <div class="container">
+      <div class="page-header-grid">
+        <div class="page-header-main">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <span class="sep">/</span>
+            <span class="current">Locations & Appointment Booking</span>
+          </nav>
+          <div class="page-category-badge">
+            <span class="pulse-dot"></span> NASHIK CLINIC LOCATIONS & OPD HOURS
+          </div>
+          <h1 class="page-main-title">
+            Visit Our Clinics & <span class="text-gradient">Book Your Consultation</span>
+          </h1>
+          <p class="page-description">
+            Consult <strong>Dr. Apurva Vilas Shindikar (MBBS, DDV Mumbai)</strong> at our primary Indira Nagar center on Wadala-Pathardi Road or our Deolali Camp practice. Prior appointments strongly recommended for minimal waiting time.
+          </p>
+          <div class="page-feature-chips">
+            <span class="feature-chip"><i class="fas fa-map-marker-alt"></i> Indira Nagar & Deolali Camp</span>
+            <span class="feature-chip"><i class="fas fa-clock"></i> Morning & Evening OPD</span>
+            <span class="feature-chip"><i class="fab fa-whatsapp"></i> Instant WhatsApp Token</span>
+            <span class="feature-chip"><i class="fas fa-phone-alt"></i> +91 84590 68967</span>
+          </div>
+        </div>
+
+        <div class="page-header-card">
+          <span class="page-header-card-badge"><i class="fas fa-phone-alt"></i> INSTANT CLINIC DESK</span>
+          <h4>Questions Before Booking?</h4>
+          <p>Speak directly with Dr. Apurva's appointment desk for treatment queries, OPD availability, or fee structures.</p>
+          <div class="header-card-actions">
+            <a href="tel:+918459068967" class="btn btn-primary btn-block">
+              <i class="fas fa-phone-alt"></i> Call +91 84590 68967
+            </a>
+            <a href="https://wa.me/918459068967?text=Hello%20Dr.%20Apurva,%20I%20have%20an%20inquiry%20regarding%20an%20appointment." target="_blank" class="btn btn-outline-wa btn-block">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp OPD
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== LOCATIONS & TIMINGS DETAILS ==================== -->
+  <main class="page-content-wrapper">
+    <div class="container">
+
+      <div class="locations-grid">
+        <!-- Location 1: Indira Nagar Main Center -->
+        <div class="location-card featured-location">
+          <div class="loc-badge">PRIMARY AESTHETIC & LASER CENTER</div>
+          <div class="loc-header">
+            <h3>Indira Nagar Main Center</h3>
+            <p class="loc-landmark"><i class="fas fa-map-marker-alt text-teal"></i> Wadala-Pathardi Road, Nashik</p>
+          </div>
+          
+          <div class="loc-body">
+            <div class="loc-detail-row">
+              <i class="fas fa-building text-teal"></i>
+              <div>
+                <strong>Complete Address:</strong>
+                <p>1st Floor, Above Golden Spoon, Wadala-Pathardi Road, Opp. Guru Gobind Singh College, Indira Nagar, Nashik, Maharashtra 422009</p>
+              </div>
+            </div>
+
+            <div class="loc-detail-row">
+              <i class="far fa-clock text-teal"></i>
+              <div>
+                <strong>OPD Consultation Hours:</strong>
+                <p>Monday – Saturday:<br>
+                  <span class="time-tag">Morning: 11:00 AM – 02:00 PM</span><br>
+                  <span class="time-tag">Evening: 05:00 PM – 08:30 PM</span><br>
+                  <em>Sunday: Closed (Emergency on call)</em>
+                </p>
+              </div>
+            </div>
+
+            <div class="loc-detail-row">
+              <i class="fas fa-bolt text-teal"></i>
+              <div>
+                <strong>Available Facilities:</strong>
+                <p>US-FDA Triple-Wavelength Diode Laser, Q-Switched Laser Toning, HydraFacial Suite, Autologous PRP Centrifuge, Private Doctor Suite.</p>
+              </div>
+            </div>
+
+            <div class="loc-detail-row">
+              <i class="fas fa-phone-alt text-teal"></i>
+              <div>
+                <strong>Direct Phone:</strong>
+                <p><a href="tel:+918459068967" class="text-teal font-bold">+91 84590 68967</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="loc-footer-action">
+            <a href="https://maps.google.com/?q=Alkaa+Skin+Laser+Clinic+Nashik" target="_blank" class="btn btn-outline btn-block">
+              <i class="fas fa-directions"></i> Get Google Maps Route
+            </a>
+          </div>
+        </div>
+
+        <!-- Location 2: Deolali Camp & Hospital Affiliations -->
+        <div class="location-card">
+          <div class="loc-badge secondary">BRANCH OPD & HOSPITAL AFFILIATIONS</div>
+          <div class="loc-header">
+            <h3>Deolali Camp Practice</h3>
+            <p class="loc-landmark"><i class="fas fa-hospital text-teal"></i> Deolali Camp & Sujata Birla Hospital</p>
+          </div>
+
+          <div class="loc-body">
+            <div class="loc-detail-row">
+              <i class="fas fa-map-pin text-teal"></i>
+              <div>
+                <strong>Deolali Camp Center:</strong>
+                <p>Dedicated satellite OPD clinic serving patients across Deolali Camp, Cantonment, and Nashik Road.</p>
+              </div>
+            </div>
+
+            <div class="loc-detail-row">
+              <i class="far fa-clock text-teal"></i>
+              <div>
+                <strong>Consultation Days:</strong>
+                <p>Available on select afternoon slots with prior appointment.</p>
+              </div>
+            </div>
+
+            <div class="loc-detail-row">
+              <i class="fas fa-hospital-alt text-teal"></i>
+              <div>
+                <strong>Sujata Birla Hospital & Medical Research Center:</strong>
+                <p>Visiting Consultant Dermatologist on Nashik Road for inpatient medical dermatology and acute clinical cases.</p>
+              </div>
+            </div>
+
+            <div class="loc-detail-row">
+              <i class="fab fa-whatsapp text-green"></i>
+              <div>
+                <strong>Appointment Coordination:</strong>
+                <p>Call or WhatsApp <a href="tel:+918459068967" class="text-teal font-bold">+91 84590 68967</a> to schedule at Deolali Camp.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="loc-footer-action">
+            <a href="https://wa.me/918459068967?text=Hello%20Dr.%20Apurva,%20I%20would%20like%20to%20consult%20at%20Deolali%20Camp." target="_blank" class="btn btn-outline-wa btn-block">
+              <i class="fab fa-whatsapp"></i> Inquire Deolali Camp OPD
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== APPOINTMENT BOOKING ENGINE ==================== -->
+      <div style="margin-top: 70px;" id="bookingSection">
+        <div class="booking-card-wrapper">
+          <div class="booking-info-pane">
+            <div class="section-tag light"><i class="fas fa-calendar-check"></i> STREAMLINED CLINICAL INTAKE</div>
+            <h2 class="pane-title">Reserve Your OPD Consultation with Dr. Apurva</h2>
+            <p class="pane-subtitle">
+              Prior scheduling guarantees minimal waiting time. Choose your preferred clinic branch, time slot, and treatment interest below.
+            </p>
+
+            <div class="booking-perks">
+              <div class="perk-item">
+                <i class="fas fa-user-md text-teal"></i>
+                <div>
+                  <strong>Direct Dermatologist Consultation</strong>
+                  <p>Comprehensive physical & microscopic assessment by Dr. Apurva Vilas Shindikar.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <i class="fas fa-clock text-teal"></i>
+                <div>
+                  <strong>Minimal Clinic Waiting Time</strong>
+                  <p>Pre-allocated priority tokens eliminate unnecessary reception delays.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <i class="fab fa-whatsapp text-teal"></i>
+                <div>
+                  <strong>Instant WhatsApp Confirmation</strong>
+                  <p>Automated confirmation sent directly with Google Maps clinic directions.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="opd-timing-box">
+              <div class="timing-title"><i class="far fa-clock"></i> Indira Nagar Clinic Hours:</div>
+              <div class="timing-slots">
+                <span><strong>Morning OPD:</strong> 11:00 AM – 02:00 PM</span>
+                <span><strong>Evening OPD:</strong> 05:00 PM – 08:30 PM</span>
+                <span><em>Monday to Saturday • Sunday Closed</em></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Booking Form -->
+          <div class="booking-form-pane">
+            <form id="appointmentForm" class="appointment-form" novalidate>
+              <div class="form-header-badge">
+                <i class="fas fa-bolt text-gold"></i> PRIORITY OPD TOKEN ALLOCATION
+              </div>
+
+              <div class="form-group">
+                <label for="clinicBranch"><i class="fas fa-map-marker-alt text-teal"></i> Choose Center *</label>
+                <select id="clinicBranch" class="form-control" required>
+                  <option value="Indira Nagar (Main Center)" selected>Indira Nagar Center (Wadala-Pathardi Rd)</option>
+                  <option value="Deolali Camp Center">Deolali Camp Center</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="patientName"><i class="far fa-user text-teal"></i> Full Name *</label>
+                  <input type="text" id="patientName" class="form-control" placeholder="e.g. Rahul Sharma" required>
+                </div>
+                <div class="form-group">
+                  <label for="patientPhone"><i class="fas fa-phone-alt text-teal"></i> WhatsApp / Mobile *</label>
+                  <input type="tel" id="patientPhone" class="form-control" placeholder="10-digit number" pattern="[0-9]{10}" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="serviceNeeded"><i class="fas fa-stethoscope text-teal"></i> Primary Concern / Procedure *</label>
+                <select id="serviceNeeded" class="form-control" required>
+                  <option value="Consultation / Diagnosis" selected>First-Time Dermatologist Consultation</option>
+                  <option value="Laser Hair Reduction">Triple-Wavelength Laser Hair Reduction</option>
+                  <option value="Acne & Scar Treatment">Acne, Pores & Scar Revision</option>
+                  <option value="Hair PRP / GFC Therapy">Hair Loss PRP / GFC Treatment</option>
+                  <option value="Q-Switched Laser Toning">Q-Switched Laser Toning & Melasma</option>
+                  <option value="Medical HydraFacial">Clinical HydraFacial Medi-Facial</option>
+                  <option value="Chemical Peels">Medical Chemical Peels</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="prefDate"><i class="far fa-calendar-alt text-teal"></i> Preferred Date *</label>
+                  <input type="date" id="prefDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="prefSlot"><i class="far fa-clock text-teal"></i> Time Slot *</label>
+                  <select id="prefSlot" class="form-control" required>
+                    <option value="Morning (11:00 AM - 02:00 PM)">Morning OPD (11:00 AM – 02:00 PM)</option>
+                    <option value="Evening (05:00 PM - 08:30 PM)" selected>Evening OPD (05:00 PM – 08:30 PM)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitFormBooking">
+                  <i class="far fa-calendar-check"></i> Generate Priority OPD Token
+                </button>
+                <button type="button" class="btn btn-outline-wa btn-block btn-lg" id="submitWhatsAppBooking">
+                  <i class="fab fa-whatsapp"></i> Book Directly via WhatsApp
+                </button>
+              </div>
+
+              <div class="form-privacy-note">
+                <i class="fas fa-lock text-green"></i> 100% Confidential Medical Intake. No spam. Instant token generation.
+              </div>
+            </form>
+
+            <!-- Success State Box -->
+            <div id="bookingSuccessBox" class="booking-success-box" style="display: none;">
+              <div class="success-icon-wrap">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h3>Appointment Request Received!</h3>
+              <p class="token-alert">Priority Token: <strong id="tokenNumberDisplay">ALK-0000</strong></p>
+              <p id="successDetailsText" class="success-details-text"></p>
+              <div class="success-actions">
+                <a href="#" id="openWhatsAppConfirm" target="_blank" class="btn btn-primary btn-block">
+                  <i class="fab fa-whatsapp"></i> Confirm with Dr. Apurva on WhatsApp
+                </a>
+                <button type="button" id="resetBookingFormBtn" class="btn btn-outline btn-block">
+                  Book Another Appointment
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div style="margin-top: 70px;">
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fas fa-question-circle"></i> VISIT INFORMATION</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Helpful answers about visiting Alkaa Skin Hair Laser Clinic in Nashik.</p>
+        </div>
+
+        <div class="faq-accordion" id="faqAccordion">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Do I need an appointment before visiting Alkaa Skin Clinic?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, booking an appointment in advance is strongly recommended to ensure minimal waiting time. Walk-in patients are accommodated subject to available slots between pre-booked consultations.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Where is the clinic located in Indira Nagar?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We are conveniently located on Wadala-Pathardi Road, 1st Floor above Golden Spoon restaurant, right opposite Guru Gobind Singh College in Indira Nagar, Nashik. Ample parking is available right outside the building.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What payment methods are accepted at the clinic?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We accept all standard payment modes including UPI (Google Pay, PhonePe, Paytm), Credit & Debit cards, and Cash.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What should I bring for my first consultation?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Please bring any previous prescription slips, blood test reports (especially complete blood count, thyroid, or hormone panels if recent), and a list of skin products or hair serums you currently use.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <div class="brand-logo footer-logo">
+          <div class="brand-emblem"><i class="fas fa-spa"></i></div>
+          <div class="brand-text">
+            <span class="brand-title">ALKAA SKIN CLINIC</span>
+            <span class="brand-subtitle">Hair • Laser • Aesthetics</span>
+          </div>
+        </div>
+        <p class="footer-bio">
+          Nashik's premier clinical dermatology and aesthetic laser practice led by Dr. Apurva Vilas Shindikar (MBBS, DDV Mumbai). Delivering safe, ethical, and transformative skin & hair care.
+        </p>
+        <div class="social-links">
+          <a href="https://share.google/EXkIzLZAakMUukrsU" target="_blank" aria-label="Google Business Profile"><i class="fab fa-google"></i></a>
+          <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/918459068967" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Pages & Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home Overview</a></li>
+          <li><a href="treatments.html"><i class="fas fa-chevron-right"></i> Medical Treatments</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> Dr. Apurva Vilas Shindikar</a></li>
+          <li><a href="clinic-tour.html"><i class="fas fa-chevron-right"></i> Clinic Tour & Lasers</a></li>
+          <li><a href="results.html"><i class="fas fa-chevron-right"></i> Patient Results & Reviews</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Locations & Booking</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Clinical Treatments</h4>
+        <ul class="footer-links">
+          <li><a href="treatments.html#laser-hair"><i class="fas fa-chevron-right"></i> Laser Hair Reduction</a></li>
+          <li><a href="treatments.html#acne-scar"><i class="fas fa-chevron-right"></i> Acne & Scar Revision</a></li>
+          <li><a href="treatments.html#hair-prp"><i class="fas fa-chevron-right"></i> Hair PRP & GFC Therapy</a></li>
+          <li><a href="treatments.html#q-switch"><i class="fas fa-chevron-right"></i> Q-Switched Laser Toning</a></li>
+          <li><a href="treatments.html#hydrafacial"><i class="fas fa-chevron-right"></i> Medical HydraFacial</a></li>
+          <li><a href="treatments.html#peels"><i class="fas fa-chevron-right"></i> Chemical Peels</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col contact-col">
+        <h4 class="footer-heading">Nashik OPD Centers</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt text-teal"></i>
+          <div>
+            <strong>Indira Nagar (Primary Clinic)</strong>
+            <p>1st Floor, Above Golden Spoon, Wadala-Pathardi Rd, opp. Guru Gobind Singh College, Nashik 422009</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt text-teal"></i>
+          <div>
+            <strong>Appointment Desk</strong>
+            <p><a href="tel:+918459068967">+91 84590 68967</a></p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fab fa-whatsapp text-green"></i>
+          <div>
+            <strong>Instant WhatsApp Booking</strong>
+            <p><a href="https://wa.me/918459068967?text=Hello%20Dr.%20Apurva,%20I%20would%20like%20to%20book%20a%20consultation." target="_blank">Chat with Clinic Desk</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Alkaa Skin, Hair & Laser Clinic. All Rights Reserved. Supervised by Dr. Apurva Vilas Shindikar (MBBS, DDVL).</p>
+        <p class="agency-credit">
+          Prototype engineered by <em style="font-style: italic; font-weight: 800; color: #38bdf8;">TechArtMedia</em> (Nashik) • High-Ticket Patient Acquisition System
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
+  <div class="floating-wa-wrapper" id="waWrapper">
+    <div class="wa-popup-bubble" id="waBubble">
+      <div class="bubble-header">
+        <div class="doctor-avatar">
+          <i class="fas fa-user-md"></i>
+        </div>
+        <div>
+          <h6>Alkaa Skin Clinic OPD</h6>
+          <small>Dr. Apurva Shindikar • Typically replies in 5m</small>
+        </div>
+        <button class="close-bubble-btn" id="closeWaBubble" aria-label="Close message">&times;</button>
+      </div>
+      <div class="bubble-body">
+        <p>Namaste! 🙏 Need help scheduling your visit, checking OPD slots, or getting directions to our Indira Nagar or Deolali Camp clinics?</p>
+      </div>
+      <div class="bubble-actions">
+        <a href="https://wa.me/918459068967?text=Hi%20Dr.%20Apurva,%20I%20would%20like%20to%20visit%20the%20Indira%20Nagar%20clinic%20this%20week." target="_blank" class="quick-wa-btn">
+          📍 Indira Nagar Clinic Visit
+        </a>
+        <a href="https://wa.me/918459068967?text=Hi%20Dr.%20Apurva,%20I%20would%20like%20to%20book%20an%20OPD%20slot%20at%20Deolali%20Camp." target="_blank" class="quick-wa-btn">
+          🏥 Deolali Camp OPD Visit
+        </a>
+      </div>
+    </div>
+    <a href="https://wa.me/918459068967?text=Hello%20Dr.%20Apurva,%20I%20would%20like%20to%20consult%20regarding%20my%20skin/hair." target="_blank" class="floating-wa-btn" id="floatingWaBtn" aria-label="WhatsApp Us">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- ==================== AUDIT COMPARISON MODAL (PITCH ASSET) ==================== -->
+  <div class="modal-overlay" id="auditModal" role="dialog" aria-modal="true" aria-labelledby="auditModalTitle">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <div>
+          <span class="badge-upgrade"><i class="fas fa-file-invoice"></i> CONFIDENTIAL PITCH BRIEFING</span>
+          <h3 id="auditModalTitle">Website Audit: Current Setup vs. TechArtMedia Solution</h3>
+        </div>
+        <button class="modal-close-btn" id="closeAuditModal" aria-label="Close modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="audit-intro-box">
+          <p>
+            Prepared for <strong>Dr. Apurva Vilas Shindikar</strong>. Below is a side-by-side technical evaluation highlighting why your current website loses potential cosmetic patients, and how this new system solves every issue.
+          </p>
+        </div>
+
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">Audit Parameter</th>
+                <th style="width: 37.5%;" class="col-bad"><i class="fas fa-times-circle"></i> Current Alkaa Website</th>
+                <th style="width: 37.5%;" class="col-good"><i class="fas fa-check-circle"></i> TechArtMedia Prototype</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Security & SSL</strong></td>
+                <td class="col-bad"><span class="status-cross">❌ No SSL HTTPS</span><br><small>Red "Not Secure" warning scares patients submitting phone numbers.</small></td>
+                <td class="col-good"><span class="status-tick">✅ 100% SSL HTTPS</span><br><small>A+ Security Certificate, padlock icon, encrypted patient booking.</small></td>
+              </tr>
+              <tr>
+                <td><strong>2. Clinical Content</strong></td>
+                <td class="col-bad"><span class="status-cross">❌ "Installation Services"</span><br><small>Template placeholder text destroys medical credibility.</small></td>
+                <td class="col-good"><span class="status-tick">✅ Authentic Dermatology</span><br><small>Clinical procedures, US-FDA laser specifications & sterile protocols.</small></td>
+              </tr>
+              <tr>
+                <td><strong>3. Patient Conversion</strong></td>
+                <td class="col-bad"><span class="status-cross">❌ No WhatsApp Integration</span><br><small>Forces tedious forms that bounce mobile patients.</small></td>
+                <td class="col-good"><span class="status-tick">✅ 1-Click WhatsApp OPD</span><br><small>Direct pre-filled WhatsApp routing with Priority Token Generator.</small></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="closeAuditBtnBottom">Close Audit</button>
+        <button class="btn btn-primary open-booking-btn"><i class="far fa-calendar-check"></i> Test Booking Engine</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== APPOINTMENT APPROVAL CONFIRMATION MODAL ==================== -->
+  <div class="modal-overlay" id="bookingApprovalModal" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
+    <div class="modal-card modal-md">
+      <div class="approval-seal-wrap">
+        <div class="approval-seal">
+          <i class="fas fa-check"></i>
+        </div>
+      </div>
+
+      <div class="modal-header text-center" style="display: block; border-bottom: none; padding-bottom: 0;">
+        <span class="badge-upgrade" style="margin-bottom: 8px;"><i class="fas fa-calendar-check"></i> BOOKING CONFIRMED</span>
+        <h3 id="appModalTitle" style="font-size: 1.45rem;">Appointment Request Approved!</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Thank you. Your consultation slot has been reserved in our OPD schedule.</p>
+      </div>
+
+      <div class="modal-body" style="padding-top: 15px;">
+        <div class="token-receipt-card">
+          <div class="token-row">
+            <span class="t-lbl"><i class="fas fa-hashtag text-teal"></i> OPD Token:</span>
+            <span class="t-val text-teal" id="appTokenId">ALK-9428</span>
+          </div>
+          <div class="token-row">
+            <span class="t-lbl"><i class="far fa-user text-teal"></i> Patient:</span>
+            <span class="t-val" id="appName">Priya Sharma</span>
+          </div>
+          <div class="token-row">
+            <span class="t-lbl"><i class="fas fa-stethoscope text-teal"></i> Treatment:</span>
+            <span class="t-val" id="appService">Clinical Consultation</span>
+          </div>
+          <div class="token-row">
+            <span class="t-lbl"><i class="far fa-calendar-alt text-teal"></i> Date & Time:</span>
+            <span class="t-val" id="appDateTime">Tomorrow • Evening OPD</span>
+          </div>
+          <div class="token-row">
+            <span class="t-lbl"><i class="fas fa-map-marker-alt text-teal"></i> Location:</span>
+            <span class="t-val" id="appBranch">Indira Nagar (Main Center)</span>
+          </div>
+        </div>
+
+        <div class="approval-status-note">
+          <i class="fas fa-shield-alt text-gold" style="font-size: 1.1rem; flex-shrink: 0; margin-top: 2px;"></i>
+          <span><strong>Priority OPD Token Allocated:</strong> Dr. Apurva's clinic coordinator will verify your token via WhatsApp/Call within 30 minutes.</span>
+        </div>
+
+        <div class="approval-actions">
+          <a href="#" id="appWhatsAppBtn" target="_blank" class="btn btn-wa-submit btn-block">
+            <i class="fab fa-whatsapp"></i> Confirm Instantly via WhatsApp
+          </a>
+          <button type="button" class="btn btn-outline btn-block" id="closeApprovalModalBtn">
+            Done / Return to Booking
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
