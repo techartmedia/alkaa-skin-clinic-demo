@@ -1,6 +1,6 @@
 /**
- * Alkaa Skin, Hair & Laser Clinic - Interactive Prototype Script
- * Developed by TechArtMedia for Dr. Apurva Shindikar (MBBS, DDVL)
+ * Alkaa Skin, Hair & Laser Clinic - Interactive Clinic Portal
+ * Dr. Apurva Vilas Shindikar (MBBS, DDV Mumbai)
  * Location: Nashik, Maharashtra
  */
 
@@ -52,43 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // 3. Pitch Banner Dismissal
+  // 3. Modals State Management (Booking Modal)
   // ==========================================
-  const pitchBanner = document.getElementById('pitchBanner');
-  const closeBannerBtn = document.getElementById('closeBannerBtn');
-  if (closeBannerBtn && pitchBanner) {
-    closeBannerBtn.addEventListener('click', () => {
-      pitchBanner.style.display = 'none';
-    });
-  }
-
-  // ==========================================
-  // 4. Modals State Management (Audit & Booking)
-  // ==========================================
-  const auditModal = document.getElementById('auditModal');
-  const openAuditModalBtn = document.getElementById('openAuditModalBtn');
-  const closeAuditModal = document.getElementById('closeAuditModal');
-
   const bookingModal = document.getElementById('bookingModal');
   const closeBookingModal = document.getElementById('closeBookingModal');
   const mServiceSelect = document.getElementById('mService');
-
-  // Open Audit Comparison Modal
-  if (openAuditModalBtn && auditModal) {
-    openAuditModalBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      auditModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-
-  // Close Audit Comparison Modal
-  if (closeAuditModal && auditModal) {
-    closeAuditModal.addEventListener('click', () => {
-      auditModal.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  }
 
   // Open Booking Modal via any .open-booking-btn
   document.querySelectorAll('.open-booking-btn').forEach(btn => {
@@ -292,10 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Global Backdrop Click & Escape Key Handlers
   window.addEventListener('click', (e) => {
-    if (e.target === auditModal) {
-      auditModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
     if (e.target === bookingModal) {
       bookingModal.classList.remove('active');
       document.body.style.overflow = '';
@@ -308,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      [auditModal, bookingModal, procedureModal].forEach(m => {
+      [bookingModal, procedureModal].forEach(m => {
         if (m && m.classList.contains('active')) {
           m.classList.remove('active');
           document.body.style.overflow = '';

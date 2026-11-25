@@ -1,6 +1,6 @@
 /* ==========================================================================
    ALKA SKIN CLINIC - LUXURY MEDICAL AESTHETICS DESIGN SYSTEM
-   Crafted by TechArtMedia for Dr. Apurva Shindikar
+   Dr. Apurva Vilas Shindikar (MBBS, DDV Mumbai)
    ========================================================================== */
 
 :root {
@@ -179,89 +179,6 @@ button {
 .btn-block {
   width: 100%;
 }
-
-/* ==================== PITCH BANNER ==================== */
-.pitch-banner {
-  background: linear-gradient(90deg, #090e17 0%, #1e293b 100%);
-  color: #ffffff;
-  padding: 9px 0;
-  border-bottom: 2px solid var(--secondary);
-  font-size: 0.82rem;
-  position: relative;
-  z-index: 1000;
-}
-
-.pitch-container {
-  max-width: 1220px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: nowrap;
-}
-
-.pitch-content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-  flex: 1;
-}
-
-.pitch-badge {
-  background: rgba(217, 119, 6, 0.25);
-  border: 1px solid var(--secondary);
-  color: #fde68a;
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  flex-shrink: 0;
-}
-
-.pitch-text {
-  font-size: 0.8rem;
-  color: #e2e8f0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.pitch-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-  gap: 12px;
-}
-
-.btn-audit-toggle {
-  background: #ffffff;
-  color: #0f172a;
-  font-size: 0.74rem;
-  font-weight: 800;
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.btn-audit-toggle:hover {
-  background: #f1f5f9;
-  transform: scale(1.03);
-}
-
-.btn-close-banner {
-  color: #94a3b8;
-  font-size: 1.2rem;
-  padding: 0 4px;
-  line-height: 1;
-}
-
-.btn-close-banner:hover { color: #ffffff; }
 
 /* ==================== TOP CONTACT STRIP ==================== */
 .top-bar {
@@ -678,72 +595,6 @@ button {
 .metric-txt span {
   font-size: 0.68rem;
   color: var(--text-muted);
-}
-
-/* ==================== AUDIT RESOLUTION STRIP ==================== */
-.audit-solved-strip {
-  background: #0f172a;
-  color: #ffffff;
-  padding: 24px 0;
-  border-top: 1px solid #1e293b;
-  border-bottom: 1px solid #1e293b;
-}
-
-.audit-strip-inner {
-  display: grid;
-  grid-template-columns: 0.9fr 1.6fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.badge-upgrade {
-  display: inline-block;
-  background: rgba(13, 148, 136, 0.2);
-  border: 1px solid var(--primary);
-  color: #5eead4;
-  font-size: 0.68rem;
-  font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 4px;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-}
-
-.audit-strip-left h4 {
-  font-size: 1.05rem;
-  font-weight: 800;
-  line-height: 1.35;
-  color: #ffffff;
-}
-
-.audit-strip-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.audit-point {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-
-.audit-point i {
-  font-size: 1.25rem;
-  margin-top: 2px;
-}
-
-.audit-point strong {
-  display: block;
-  font-size: 0.86rem;
-  color: #f1f5f9;
-  margin-bottom: 2px;
-}
-
-.audit-point p {
-  font-size: 0.74rem;
-  color: #94a3b8;
-  line-height: 1.35;
 }
 
 /* ==================== DOCTOR BIO SECTION ==================== */
@@ -1858,171 +1709,11 @@ button {
   margin-bottom: 8px;
 }
 
-/* ==================== POWERED BY TECHARTMEDIA SHOWCASE BANNER ==================== */
-.techart-showcase-strip {
-  background: #06101e;
-  border-top: 1px solid rgba(56, 189, 248, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 32px 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.techart-showcase-strip::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 20%;
-  width: 350px;
-  height: 100%;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.techart-card {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 30, 48, 0.98) 100%);
-  border: 1.5px solid rgba(56, 189, 248, 0.25);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(14, 165, 233, 0.1);
-  border-radius: var(--radius-lg);
-  padding: 24px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.techart-card:hover {
-  border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(14, 165, 233, 0.2);
-}
-
-.techart-brand-side {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.techart-logo-wrap {
-  width: 68px;
-  height: 68px;
-  border-radius: var(--radius-md);
-  background: #020617;
-  border: 1.5px solid rgba(56, 189, 248, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-}
-
-.techart-agency-logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.techart-info-text {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.techart-powered-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(14, 165, 233, 0.15);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  color: #38bdf8;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 20px;
-  width: fit-content;
-}
-
-.techart-powered-pill em {
-  font-style: italic;
-  font-weight: 900;
-  color: #ffffff;
-}
-
-.techart-card-heading {
-  font-size: 1.08rem;
-  font-weight: 700;
-  color: #f8fafc;
-  margin: 0;
-  line-height: 1.3;
-}
-
-.techart-card-sub {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  margin: 0;
-}
-
-.techart-action-side {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-}
-
-.btn-techart-visit {
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.86rem;
-  padding: 10px 20px;
-  border-radius: var(--radius-sm);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
-  transition: all 0.25s ease;
-  text-decoration: none;
-}
-
-.btn-techart-visit:hover {
-  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.5);
-  color: #ffffff;
-}
-
-.techart-meta-tag {
-  font-size: 0.74rem;
-  color: #64748b;
-  font-weight: 500;
-}
-
-@media (max-width: 768px) {
-  .techart-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-  }
-  .techart-action-side {
-    align-items: flex-start;
-    width: 100%;
-  }
-  .btn-techart-visit {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 22px 0;
-  font-size: 0.78rem;
-  color: #64748b;
+  font-size: 0.82rem;
+  color: #94a3b8;
 }
 
 .footer-bottom-inner {
@@ -2033,13 +1724,36 @@ button {
   gap: 12px;
 }
 
-.footer-badge-note {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.76rem;
+.footer-bottom-inner .copyright {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.82rem;
+}
+
+.footer-powered {
+  font-size: 0.82rem;
   color: #94a3b8;
   margin: 0;
+}
+
+.footer-powered a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-powered a:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
 }
 
 /* ==================== FLOATING WHATSAPP CHAT WIDGET ==================== */
@@ -2253,76 +1967,6 @@ button {
   padding: 28px;
 }
 
-.modal-intro {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.audit-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.82rem;
-  margin-bottom: 24px;
-}
-
-.audit-table th {
-  background: var(--dark);
-  color: #ffffff;
-  padding: 10px 12px;
-  text-align: left;
-  font-weight: 700;
-}
-
-.audit-table th.th-old { background: #b91c1c; }
-.audit-table th.th-new { background: #0f766e; }
-
-.audit-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border);
-  color: var(--dark-muted);
-  line-height: 1.4;
-}
-
-.audit-table tr:nth-child(even) td {
-  background: var(--bg-page);
-}
-
-.modal-cta-box {
-  background: linear-gradient(135deg, #090e17 0%, #1e293b 100%);
-  color: #ffffff;
-  padding: 20px 24px;
-  border-radius: var(--radius-md);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-
-.cta-box-left h4 {
-  font-size: 1.05rem;
-  font-weight: 800;
-  margin-bottom: 4px;
-}
-
-.cta-box-left p {
-  font-size: 0.78rem;
-  color: #94a3b8;
-}
-
-.cta-box-right {
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.cta-box-right small {
-  display: block;
-  font-size: 0.68rem;
-  color: #cbd5e1;
-  margin-top: 4px;
-}
-
 .badge-opd {
   background: var(--primary-light);
   color: var(--primary-dark);
@@ -2447,16 +2091,6 @@ button {
   .brand-subtitle { display: none; }
   .mobile-hamburger { display: flex; align-items: center; justify-content: center; margin-left: auto; }
   
-  .pitch-container {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
-  }
-  .pitch-text {
-    white-space: normal;
-    font-size: 0.76rem;
-  }
-  
   .hero-title {
     font-size: 1.85rem;
     line-height: 1.25;
@@ -2494,10 +2128,6 @@ button {
   .locations-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .modal-cta-box { flex-direction: column; text-align: center; }
-  .cta-box-right { text-align: center; }
-  .audit-strip-inner { grid-template-columns: 1fr; }
-  .audit-strip-grid { grid-template-columns: 1fr; gap: 12px; }
 }
 
 /* ==================== LUXURY TOAST NOTIFICATIONS ==================== */
